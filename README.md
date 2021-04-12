@@ -8,7 +8,7 @@ You need only docker to run this project.
 With docker compose, this application is exposed on: http://localhost:8080/
 Locally, this application is exposed on: http://localhost:4040/
 
-Node.js development environment with hot reloading (see [package.json][package.json]):
+Node.js development environment with hot reloading (see [package.json](https://github.com/Virmli/github-commit-api/blob/main/package.json)):
 
 ```bash
 npm i
@@ -16,7 +16,7 @@ npm run redis:start
 npm run dev
 ```
 
-Docker environment (see [docker-compose.yml][docker-compose]):
+Docker environment (see [docker-compose.yml](docker-compose)):
 
 ```bash
 docker-compose build
