@@ -52,9 +52,9 @@ Response: [
 ```
 This service returns the number of commits which occurred
 from June 1, 2019 - May 31, 2020, associated with the author, and
-and filters them to contain the top 5 committers.
+and filters them to contain the top 5 committers. Supports query params in format YYYY-MM-DD
 ```
-GET http://localhost:8080/api/v1/most-frequent
+GET http://localhost:8080/api/v1/most-frequent?start=2020-09-07&end=2021-04-30
 Response: [
             {
                 name: string, # author's name
