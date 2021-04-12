@@ -34,6 +34,9 @@ class HelperFunctions {
       throw new Error('Input must not be of zero length');
     }
 
+    if (!header.link) {
+      return 1;
+    }
     // Split parts by comma
     const parts = header.link.split(',');
     let numberOfPages = 0;
@@ -52,6 +55,30 @@ class HelperFunctions {
     });
 
     return numberOfPages;
+  }
+
+  sortTopFiveCommiters(commitCounter) {
+    const response = [];
+    const sortedResult = [];
+
+    for (const user in commitCounter) {
+      sortedResult.push([user, commitCounter[user]]);
+    }
+    // we doing reverse sort result will be from high to low.
+    sortedResult.sort((a, b) => b[1] - a[1]);
+
+    for (let i = 0; i < sortedResult.length; i++) {
+      if (i >= 5) {
+        i = sortedResult.length;
+      } else {
+        response.push({
+          name: sortedResult[i][0],
+          commits: sortedResult[i][1],
+        });
+      }
+    }
+
+    return response;
   }
 }
 

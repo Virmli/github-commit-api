@@ -9,12 +9,15 @@ const HelperFunctionsClass = require('../utils/helperFunctions');
 const helperFunctions = new HelperFunctionsClass();
 
 /**
- * Function to call git hub endpoint to return
+ *  * Function to call git hub endpoint to return
  * list of commits with detailed information to specific company meeting
+ * @param start
+ * @param end
+ * @returns {Promise<T>}
  */
-const getListOfCommits = async () => {
+const getListOfCommits = async (start = defaultSince, end = defaultUntil) => {
   let url = `${baseUrl}/${company}/deploy/commits`;
-  url = helperFunctions.addDateFiltersToRequest(url, defaultSince, defaultUntil);
+  url = helperFunctions.addDateFiltersToRequest(url, start, end);
 
   // Solution is based on GitHub documentation. I can talk on our discussion call more about
   // different approaches we can take her.
