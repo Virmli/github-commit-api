@@ -16,7 +16,7 @@ npm run redis:start
 npm run dev
 ```
 
-Docker environment (see [docker-compose.yml](docker-compose)):
+Docker environment (see [docker-compose.yml](https://github.com/Virmli/github-commit-api/blob/main/docker-compose.yml)):
 
 ```bash
 docker-compose build
