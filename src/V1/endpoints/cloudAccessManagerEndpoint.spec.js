@@ -7,6 +7,7 @@ const services = require('../services/cloudAccessManagerService');
 
 const mockReq = {
   originalUrl: 'hello/test',
+  query: {},
 };
 const mockNext = jest.fn();
 const mockRes = {
