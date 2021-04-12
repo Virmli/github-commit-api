@@ -10,7 +10,7 @@ const cache = require('../clients/redisClient');
  * @param next
  * @returns {Promise<*>}
  */
-module.exports.getUsers = async (cloudAccessManagerService, req, res, next) => {
+module.exports.getUsers = async (cloudAccessManagerService, req, res) => {
   try {
     const response = await cloudAccessManagerService.getListOfUsers(req, cache);
 
@@ -18,7 +18,12 @@ module.exports.getUsers = async (cloudAccessManagerService, req, res, next) => {
   } catch (error) {
     safeStringify(error);
 
-    return next(error);
+    // Note in ideal world we need to create error handling classes
+    // with correct error status, messages etc.
+    // Examples: BadRequest, NotFound, ServerError etc.
+    return res.status(500).json({
+      error: error.message || 'Unknown Error',
+    });
   }
 };
 
@@ -30,7 +35,7 @@ module.exports.getUsers = async (cloudAccessManagerService, req, res, next) => {
  * @param next
  * @returns {Promise<*>}
  */
-module.exports.getMostFrequentUsers = async (cloudAccessManagerService, req, res, next) => {
+module.exports.getMostFrequentUsers = async (cloudAccessManagerService, req, res) => {
   try {
     const response = await cloudAccessManagerService.getTopFiveCommitters(req, cache);
 
@@ -38,6 +43,8 @@ module.exports.getMostFrequentUsers = async (cloudAccessManagerService, req, res
   } catch (error) {
     safeStringify(error);
 
-    return next(error);
+    return res.status(500).json({
+      error: error.message || 'Unknown Error',
+    });
   }
 };

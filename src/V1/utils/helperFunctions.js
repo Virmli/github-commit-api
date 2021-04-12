@@ -57,6 +57,11 @@ class HelperFunctions {
     return numberOfPages;
   }
 
+  /**
+   * Sort response to find top five committers.
+   * @param commitCounter
+   * @returns {[]}
+   */
   sortTopFiveCommiters(commitCounter) {
     const response = [];
     const sortedResult = [];

@@ -59,7 +59,7 @@ module.exports.getTopFiveCommitters = async (req, cache) => {
     if (dateRegex.test(start) && dateRegex.test(end)) {
       getListOfCommitsArgs = [start, end];
     } else {
-      return { error: 'wrong date format' };
+      throw new Error('Wrong date format');
     }
   }
 

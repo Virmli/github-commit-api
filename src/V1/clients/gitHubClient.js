@@ -34,7 +34,7 @@ const getListOfCommits = async (start = defaultSince, end = defaultUntil) => {
   const initialCall = await axios.get(url);
 
   if (initialCall.status === 500) {
-    throw new Error('something went wrong');
+    throw new Error('GitHub is down');
   }
   const numberOfPages = helperFunctions.extractPaginationInfo(initialCall.headers);
   let result = initialCall.data;
@@ -47,7 +47,7 @@ const getListOfCommits = async (start = defaultSince, end = defaultUntil) => {
     const response = await axios.get(`${url}&page=${i}`);
 
     if (response.status === 500) {
-      throw new Error('something went wrong');
+      throw new Error('GitHub is down');
     }
 
     result = result.concat(response.data);

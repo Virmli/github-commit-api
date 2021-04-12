@@ -42,11 +42,12 @@ describe('Cloud Access Manager Endpoint Test', () => {
   });
 
   it('should make get commiters call error', async () => {
-    axios.get.mockImplementationOnce(() => Promise.reject(new Error('something went wrong')));
+    axios.get.mockImplementationOnce(() => Promise.reject(new Error('GitHub is down')));
 
     await endpoints.getUsers(services, mockReq, mockRes, mockNext);
 
-    expect(mockNext).toHaveBeenCalledWith(new Error('something went wrong'));
+    expect(mockRes.status).toHaveBeenLastCalledWith(500);
+    expect(mockRes.json).toHaveBeenLastCalledWith({ error: 'GitHub is down' });
   });
 
   it('should make get top 5 commiters call successful', async () => {
@@ -71,7 +72,8 @@ describe('Cloud Access Manager Endpoint Test', () => {
 
     await endpoints.getMostFrequentUsers(services, mockReq, mockRes, mockNext);
 
-    expect(mockNext)
-      .toHaveBeenLastCalledWith(new Error('something went wrong'));
+    expect(mockRes);
+    expect(mockRes.status).toHaveBeenLastCalledWith(500);
+    expect(mockRes.json).toHaveBeenLastCalledWith({ error: 'GitHub is down' });
   });
 });
