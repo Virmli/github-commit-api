@@ -1,0 +1,18 @@
+# Defines the local environment configuration for our application
+
+version: '2'
+services:
+  redis:
+    container_name: teradici-redis
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+  teradici:
+    container_name: teradici-github
+    build: .
+    environment:
+      - APP_ENV=production
+      - NODE_ENV=production
+      - PORT=8080
+    ports:
+      - '8080:8080'

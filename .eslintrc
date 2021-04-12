@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "func-names": ["error", "never"],
+    "no-underscore-dangle": [0, { "allow": [] }]
+  },
+  "env": {
+    "jest": true
+  }
+}
